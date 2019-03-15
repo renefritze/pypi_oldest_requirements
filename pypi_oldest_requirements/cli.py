@@ -5,14 +5,15 @@ import sys
 import click
 
 
-@click.command()
-def main(args=None):
-    """Console script for pypi_oldest_requirements."""
-    click.echo("Replace this message by putting your code into "
-               "pypi_oldest_requirements.cli.main")
-    click.echo("See click documentation at http://click.pocoo.org/")
-    return 0
+# @click.command()
+# @click.option('--requirements-file', '-r', default='requirements.txt',
+#               help='The requirements file to process')
+def main(requirements_file):
+    from pypi_oldest_requirements import requirements
+    for name, oldest in requirements.get_oldest_from_req_file(requirements_file):
+        print(f'{name}: {oldest}')
 
 
 if __name__ == "__main__":
-    sys.exit(main())  # pragma: no cover
+    main(sys.argv[1])
+    # sys.exit(main())  # pragma: no cover
