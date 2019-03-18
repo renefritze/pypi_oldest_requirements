@@ -21,7 +21,7 @@ deploy:
   distributions: sdist bdist_wheel
   user: koshi
   password:
-    secure: PLEASE_REPLACE_ME
+    secure: WufayPfYKI7Tgi/NQhzuHmVElbNLL26qZOo+0N8KwWhhFGZKpfJdSLxvWdTW9x7QD0/6KBKk6b8p7nmNzPI23vALhdaC6QhxL2BPr7HOkMu/ILbvKpKZSnHI4vA5GceDBKJr0iDgiMPMuki5VZvq+IZYkaWpLI1/m7n27sChq+LoBSaYO5TMD8uPavxXgTKLOE5+STklV76SVRa/lkRKRtiecbyhe8YDu/nKzdWulyG5q6jBs2vrQFB27x4U258+sS4JCWp/jXqscfR+2aEmgFwH3qv9BgJJ/+FQrX/YALXRdPtd4QoYH0j6i9uj1LP5FQoS6rWJ3CH+Q8ar2RAbOgrMKsuli3OXhNpu1LfBDLGhRAacCKgO2DZ0ndRquY73xnJDCYcw5hF6dV+KccsfhxdPzGBtvzyLXH5DarT4F5udxF0BB6BG7Vwc/og8BdFIyzggx2qVQ2TNjl+Ze3lafG1whQauNe5XrMF3wbBU5Bm+x95dilNkClBqr4Of3SbNZT8JI5lCCh6aPH7I3G+uWPesyZuxbiZPQkK1MR8m14PRQGdwHHYd2Br0oznJo6KbcpG0eAJ87XAk0nYYJFTwO3zO6R5GfUSlTcfWu3z6QwUYxBuJZ1zSMXoemU3tXI1b7r6k6iAZdnVPWTPbf7s6oV2JykxRDvYjiWBxDkv3+ic=
   on:
     tags: true
     repo: renefritze/pypi_oldest_requirements
