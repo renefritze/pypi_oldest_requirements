@@ -1,3 +1,4 @@
+import os
 import warnings
 
 from pkg_resources import parse_requirements
@@ -5,6 +6,7 @@ from requirements import parser
 from packaging.specifiers import SpecifierSet
 
 from pypi_oldest_requirements import pypi
+from pypi_oldest_requirements import misc
 
 
 def get_oldest_version(req):
@@ -23,16 +25,18 @@ def get_oldest_version(req):
 
 
 def get_oldest_from_req_file(req_file):
+    # requirements files can contain relative imports
     parsed = []
-    for line in open(req_file, 'rt').readlines():
-        try:
-            gen = list(parse_requirements(line))
-        except :
-            gen = list(parser.parse(line))
-        for req in gen:
-            if req.name is None and hasattr(req, 'uri'):
-                # explicit uri dependency cannot install a different version anyway
-                continue
-            parsed.append(req)
+    with misc.cd(os.path.dirname(os.path.abspath(req_file))):
+        for line in open(req_file, 'rt').readlines():
+            try:
+                gen = list(parse_requirements(line))
+            except :
+                gen = list(parser.parse(line))
+            for req in gen:
+                if req.name is None and hasattr(req, 'uri'):
+                    # explicit uri dependency cannot install a different version anyway
+                    continue
+                parsed.append(req)
     for req in parsed:
         yield req.name, get_oldest_version(req)
