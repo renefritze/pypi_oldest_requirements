@@ -31,7 +31,7 @@ setup(
     description='Get "oldest" fitting requirements from pypi',
     entry_points={
         'console_scripts': [
-            'pypi_oldest_requirements=pypi_oldest_requirements.cli:main',
+            'pypi_minimal_requirements_pinned=pypi_oldest_requirements.cli:transform',
         ],
     },
     install_requires=requirements,

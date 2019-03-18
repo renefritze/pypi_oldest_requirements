@@ -5,6 +5,7 @@
 import requests
 from packaging import version
 
+
 def get_versions(package_name):
     r = requests.get(f"https://pypi.org/pypi/{package_name}/json")
     try:
