@@ -4,11 +4,10 @@
 """Tests for `pypi_oldest_requirements` package."""
 import os
 import pickle
-import pprint
 import sys
 import pytest
 
-from pypi_oldest_requirements import requirements
+from pypi_oldest_requirements import req_parse
 
 
 def test_command_line_interface():
@@ -16,9 +15,9 @@ def test_command_line_interface():
     this_dir = os.path.dirname(os.path.abspath(__file__))
     req_file = os.path.join(this_dir, 'requirements.txt')
     pckl = os.path.join(this_dir, 'result.pickle')
-    res = [(n, o) for n, o in requirements.get_oldest_from_req_file(req_file)]
-    pprint.pprint(res)
-    pickle.dump(res, open(pckl, 'wb'))
+    res = {(n, str(o)) for n, o in req_parse.get_oldest_from_req_file(req_file)}
+    pickle.dump(res, open(pckl+'.new', 'wb'))
+    assert res == pickle.load(open(pckl, 'rb'))
 
 
 if __name__ == '__main__':
