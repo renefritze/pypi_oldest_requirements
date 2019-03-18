@@ -2,37 +2,24 @@
 # -*- coding: utf-8 -*-
 
 """Tests for `pypi_oldest_requirements` package."""
-
+import os
+import pickle
+import pprint
+import sys
 import pytest
 
-from click.testing import CliRunner
-
-from pypi_oldest_requirements import pypi_oldest_requirements
-from pypi_oldest_requirements import cli
-
-
-@pytest.fixture
-def response():
-    """Sample pytest fixture.
-
-    See more at: http://doc.pytest.org/en/latest/fixture.html
-    """
-    # import requests
-    # return requests.get('https://github.com/audreyr/cookiecutter-pypackage')
-
-
-def test_content(response):
-    """Sample pytest test function with the pytest fixture as an argument."""
-    # from bs4 import BeautifulSoup
-    # assert 'GitHub' in BeautifulSoup(response.content).title.string
+from pypi_oldest_requirements import requirements
 
 
 def test_command_line_interface():
     """Test the CLI."""
-    runner = CliRunner()
-    result = runner.invoke(cli.main)
-    assert result.exit_code == 0
-    assert 'pypi_oldest_requirements.cli.main' in result.output
-    help_result = runner.invoke(cli.main, ['--help'])
-    assert help_result.exit_code == 0
-    assert '--help  Show this message and exit.' in help_result.output
+    this_dir = os.path.dirname(os.path.abspath(__file__))
+    req_file = os.path.join(this_dir, 'requirements.txt')
+    pckl = os.path.join(this_dir, 'result.pickle')
+    res = [(n, o) for n, o in requirements.get_oldest_from_req_file(req_file)]
+    pprint.pprint(res)
+    pickle.dump(res, open(pckl, 'wb'))
+
+
+if __name__ == '__main__':
+    sys.exit(pytest.main(sys.argv[1:] + [__file__, '-s']))
