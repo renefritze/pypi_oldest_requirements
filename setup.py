@@ -11,17 +11,17 @@ with open('README.rst') as readme_file:
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
-requirements = ['Click>=6.0', ]
+requirements = ['packaging']
 
 setup_requirements = ['pytest-runner', ]
 
-test_requirements = ['pytest', ]
+test_requirements = ['pytest', 'pytest-cov', 'tox', 'twine']
 
 setup(
     author="René Fritze",
     author_email='rene.fritze@wwu.de',
     classifiers=[
-        'Development Status :: 2 - Pre-Alpha',
+        'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: BSD License',
         'Natural Language :: English',
@@ -33,7 +33,7 @@ setup(
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
     ],
-    description="Get "oldest" fitting requirements from pypi",
+    description='Get "oldest" fitting requirements from pypi',
     entry_points={
         'console_scripts': [
             'pypi_oldest_requirements=pypi_oldest_requirements.cli:main',
