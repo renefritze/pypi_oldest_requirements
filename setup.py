@@ -11,7 +11,7 @@ with open('README.rst') as readme_file:
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
-requirements = ['packaging', 'requirements-parser']
+requirements = ['packaging', 'requirements-parser', 'requests']
 
 setup_requirements = ['pytest-runner', ]
 
@@ -45,7 +45,7 @@ setup(
     test_suite='tests',
     tests_require=test_requirements,
     url='https://github.com/renefritze/pypi_oldest_requirements',
-    version='2019.0',
+    version='2019.1',
     zip_safe=False,
     python_requires='>=3.6',
 )
