@@ -39,7 +39,7 @@ def _get_minimal_restricted_version(req):
     for av in sorted(available_versions, reverse=False):
         # for some reason 'av' is incompatible 'Version" object that spec_set wants to parse again
         if spec_set.contains(str(av)):
-            return f'{req.name}=={av}\n'
+            return f'{req.name}=={av};{req.marker}\n'
     raise RuntimeError(f'no matching version for {req.project_name}')
 
 
@@ -121,14 +121,14 @@ def get_last_majors_from_req_file(req_file, skip_n_releases=1):
 
 
 def get_minimal_restricted_from_req_file(req_file, skip_n_releases=1):
-    # requirements files can contain relative imports
     parsed = []
     verbatim = []
+    # requirements files can contain relative imports
     with misc.cd(os.path.dirname(os.path.abspath(req_file))):
         for line in open(req_file, 'rt').readlines():
             try:
                 gen = list(parse_requirements(line))
-            except :
+            except:
                 gen = list(parser.parse(line))
             for req in gen:
                 if req.name is None and hasattr(req, 'uri'):
@@ -138,6 +138,7 @@ def get_minimal_restricted_from_req_file(req_file, skip_n_releases=1):
                 parsed.append(req)
     for req in parsed:
         yield _get_minimal_restricted_version(req)
+    yield '# verbatim copies of original lines'
     for line in verbatim:
         yield line
 
