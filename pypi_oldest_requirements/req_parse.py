@@ -39,7 +39,7 @@ def _get_minimal_restricted_version(req):
     for av in sorted(available_versions, reverse=False):
         # for some reason 'av' is incompatible 'Version" object that spec_set wants to parse again
         if spec_set.contains(str(av)):
-            if req.marker:
+            if getattr(req, 'marker', None):
                 return f'{req.name}=={av};{req.marker}\n'
             return f'{req.name}=={av}\n'
     raise RuntimeError(f'no matching version for {req.project_name}')
