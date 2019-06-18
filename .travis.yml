@@ -32,3 +32,5 @@ deploy:
   on:
     tags: true
     repo: renefritze/pypi_oldest_requirements
+    # a pure python needs no muliple builds
+    python: 3.6
