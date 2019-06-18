@@ -8,7 +8,7 @@ python:
   - 3.6
 
 # Command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
-install: pip install -U tox-travis
+install: pip install -U tox-travis twine readme_renderer[md]
 
 # Command to run tests, e.g. python setup.py test
 script: |
@@ -16,6 +16,8 @@ script: |
     # check the cli command too
     pip install .
     pypi_minimal_requirements_pinned requirements_dev.txt requirements_dev.txt
+    python setup.py sdist bdist_wheel
+    twine check dist/*
 
 # Assuming you have installed the travis-ci CLI tool, after you
 # create the Github repo and add it to Travis, run the
