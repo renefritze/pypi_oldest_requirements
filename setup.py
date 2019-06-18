@@ -5,12 +5,6 @@
 
 from setuptools import setup, find_packages
 
-with open('README.rst') as readme_file:
-    readme = readme_file.read()
-
-with open('HISTORY.rst') as history_file:
-    history = history_file.read()
-
 requirements = ['packaging', 'requirements-parser', 'requests']
 
 setup_requirements = ['pytest-runner', ]
@@ -36,7 +30,8 @@ setup(
     },
     install_requires=requirements,
     license="BSD license",
-    long_description=readme + '\n\n' + history,
+    long_description=open('README.md').read(),
+    long_description_content_type='text/markdown',
     include_package_data=True,
     keywords='pypi_oldest_requirements',
     name='pypi_oldest_requirements',
