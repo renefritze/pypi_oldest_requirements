@@ -40,7 +40,7 @@ setup(
     test_suite='tests',
     tests_require=test_requirements,
     url='https://github.com/renefritze/pypi_oldest_requirements',
-    version='2020.3',
+    version='2020.3.2',
     zip_safe=False,
     python_requires='>=3.6',
 )
