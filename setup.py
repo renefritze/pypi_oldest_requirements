@@ -5,7 +5,7 @@
 
 from setuptools import setup, find_packages
 
-requirements = ['packaging', 'requirements-parser', 'requests']
+requirements = ['packaging', 'requirements-parser', 'requests', 'requests-toolbelt']
 
 setup_requirements = ['pytest-runner', ]
 
@@ -40,7 +40,7 @@ setup(
     test_suite='tests',
     tests_require=test_requirements,
     url='https://github.com/renefritze/pypi_oldest_requirements',
-    version='2020.2',
+    version='2020.3',
     zip_safe=False,
     python_requires='>=3.6',
 )
