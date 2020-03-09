@@ -1,6 +1,8 @@
+import functools
+import operator
 import os
-
-from pkg_resources import parse_requirements
+from collections import defaultdict
+from pkg_resources import parse_requirements, RequirementParseError
 from requirements import parser
 from packaging.specifiers import SpecifierSet, Version
 
@@ -23,6 +25,11 @@ def _get_all_versions(req):
 
 
 def _get_oldest_version(req):
+    """
+
+    :param req: a single package name
+    :return: the oldest version listed on pypi
+    """
     available_versions, spec_set = _get_all_versions(req)
     for av in sorted(available_versions, reverse=False):
         # for some reason 'av' is incompatible 'Version" object that spec_set wants to parse again
@@ -122,26 +129,56 @@ def get_last_majors_from_req_file(req_file, skip_n_releases=1):
     return _get_from_req_file(req_file, filter_func)
 
 
+def _marker_ok(req):
+    raise RuntimeError
+
+
+def _merge_duplicates(parsed):
+    merged = []
+    for key, req_list in parsed.items():
+        if len(req_list) == 1:
+            merged.append(req_list[0])
+            continue
+        reqs = [r for r in req_list if r.marker.evaluate()]
+        spec_sets = [r.specifier for r in reqs]
+        r0 = reqs[0]
+        # the compoung requirement results from only  True markers
+        r0.marker = None
+        r0.specifier = functools.reduce(operator.and_, spec_sets[1:], spec_sets[0])
+        r0.specs = [s._spec for s in r0.specifier._specs]
+        merged.append(r0)
+    return merged
+
+
 def get_minimal_restricted_from_req_file(req_file, skip_n_releases=1):
-    parsed = []
+    parsed = defaultdict(list)
     verbatim = []
-    # requirements files can contain relative imports
+    imported = []
     with misc.cd(os.path.dirname(os.path.abspath(req_file))):
         for line in open(req_file, 'rt').readlines():
+            # include relative imports
+            tokens = line.strip().split(' ')
+            if len(tokens) >= 2  and tokens[0].strip() == '-r':
+                imported.extend(get_minimal_restricted_from_req_file(tokens[1]))
+                continue
             try:
                 gen = list(parse_requirements(line))
-            except:
+            except (RequirementParseError,) as ex:
                 gen = list(parser.parse(line))
             for req in gen:
                 if req.name is None and hasattr(req, 'uri'):
                     # explicit uri dependency cannot install a different version anyway
                     verbatim.append(line)
                     continue
-                parsed.append(req)
+                parsed[req.key].append(req)
+    parsed = _merge_duplicates(parsed)
     for req in parsed:
         yield _get_minimal_restricted_version(req)
-    yield '# verbatim copies of original lines'
+    yield '# verbatim copies of original lines\n'
     for line in verbatim:
+        yield line
+    yield '# imported requirements\n'
+    for line in imported:
         yield line
 
 
