@@ -21,5 +21,15 @@ def test_command_line_interface(req_name):
     assert res == pickle.load(open(pckl, 'rb'))
 
 
+@pytest.mark.parametrize("req_name", ['requirements.txt', 'requirements-optional.txt'])
+def test_command_line_interface(req_name):
+    """Test the CLI."""
+    this_dir = os.path.dirname(os.path.abspath(__file__))
+    req_file = os.path.join(this_dir, req_name)
+    pckl = os.path.join(this_dir, f'{req_name}.minimal.pickle')
+    res = list(req_parse.get_minimal_restricted_from_req_file(req_file))
+    pickle.dump(res, open(pckl+'.new', 'wb'))
+    assert res == pickle.load(open(pckl, 'rb'))
+
 if __name__ == '__main__':
     sys.exit(pytest.main(sys.argv[1:] + [__file__, '-s']))
