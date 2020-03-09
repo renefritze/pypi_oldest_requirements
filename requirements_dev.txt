@@ -12,3 +12,4 @@ pytest-runner==4.2
 pytest-pycharm
 pytest-cov
 requests
+requirements-parser
