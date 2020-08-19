@@ -7,7 +7,7 @@ from setuptools import setup, find_packages
 
 requirements = ['packaging', 'requirements-parser', 'requests', 'requests-toolbelt']
 
-setup_requirements = ['pytest-runner', ]
+setup_requirements = ['pytest-runner', 'setuptools>=40.8.0,<49.2.0']
 
 test_requirements = ['pytest', 'pytest-cov', 'tox', 'twine']
 
@@ -21,6 +21,7 @@ setup(
         'Natural Language :: English',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
     ],
     description='Get "oldest" fitting requirements from pypi',
     entry_points={
@@ -40,7 +41,7 @@ setup(
     test_suite='tests',
     tests_require=test_requirements,
     url='https://github.com/renefritze/pypi_oldest_requirements',
-    version='2020.4.1',
+    version='2020.4.2',
     zip_safe=False,
     python_requires='>=3.6',
 )
