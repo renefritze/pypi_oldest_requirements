@@ -18,7 +18,8 @@ def test_oldest_req(req_name):
     pckl = os.path.join(this_dir, f'{req_name}_{sys.version_info.major}.{sys.version_info.minor}.pickle')
     res = {(n, str(o)) for n, o in req_parse.get_oldest_from_req_file(req_file)}
     pickle.dump(res, open(pckl+'.new', 'wb'))
-    assert res == pickle.load(open(pckl, 'rb'))
+    control = pickle.load(open(pckl, 'rb'))
+    assert res == control
 
 
 @pytest.mark.parametrize("req_name", ['requirements.txt', 'requirements-optional.txt'])
@@ -29,7 +30,11 @@ def test_minimal_req(req_name):
     pckl = os.path.join(this_dir, f'{req_name}_{sys.version_info.major}.{sys.version_info.minor}.minimal.pickle')
     res = list(req_parse.get_minimal_restricted_from_req_file(req_file))
     pickle.dump(res, open(pckl+'.new', 'wb'))
-    assert res == pickle.load(open(pckl, 'rb'))
+    control = pickle.load(open(pckl, 'rb'))
+    ldiff = set(res) - set(control)
+    rdiff = set(control) - set(res)
+    assert ldiff == rdiff
+
 
 if __name__ == '__main__':
     sys.exit(pytest.main(sys.argv[1:] + [__file__, '-s']))
