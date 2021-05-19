@@ -4,7 +4,8 @@
 """The setup script."""
 
 from setuptools import setup, find_packages
-
+sys.path.append(os.path.dirname(__file__))
+import versioneer
 requirements = ['packaging', 'requirements-parser', 'requests', 'requests-toolbelt', 'typer', 'click<8']
 
 setup_requirements = ['pytest-runner', ]
@@ -41,7 +42,8 @@ setup(
     test_suite='tests',
     tests_require=test_requirements,
     url='https://github.com/renefritze/pypi_oldest_requirements',
-    version='2020.4.2',
+        version=versioneer.get_version(),
+    cmdclass=versioneer.get_cmdclass(),
     zip_safe=False,
     python_requires='>=3.6',
 )
