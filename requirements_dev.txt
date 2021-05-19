@@ -13,3 +13,4 @@ pytest-cov
 requests
 requirements-parser
 pytest-regressions
+pre-commit
