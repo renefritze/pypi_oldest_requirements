@@ -6,6 +6,7 @@ from collections import defaultdict
 from pathlib import Path
 from typing import List, Union
 
+import pkg_resources
 from pkg_resources import parse_requirements, RequirementParseError
 from requirements import parser
 from packaging.specifiers import SpecifierSet, Version
@@ -112,7 +113,7 @@ def _get_from_req_file(req_files: StrPaths, filter_func):
         for line in itertools.chain(*(open(r, 'rt').readlines() for r in req_files)):
             try:
                 gen = list(parse_requirements(line))
-            except :
+            except (RequirementParseError, pkg_resources.extern.packaging.requirements.InvalidRequirement):
                 gen = list(parser.parse(line))
             for req in gen:
                 if req.name is None and hasattr(req, 'uri'):
@@ -173,7 +174,7 @@ def get_minimal_restricted_from_req_file(req_files: StrPaths, skip_n_releases=1)
                 continue
             try:
                 gen = list(parse_requirements(line))
-            except (RequirementParseError,) as ex:
+            except (RequirementParseError, pkg_resources.extern.packaging.requirements.InvalidRequirement) as ex:
                 gen = list(parser.parse(line))
             for req in gen:
                 if req.name is None and hasattr(req, 'uri'):
