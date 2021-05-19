@@ -14,14 +14,14 @@ from packaging.specifiers import SpecifierSet, Version
 from pypi_oldest_requirements import pypi
 from pypi_oldest_requirements import misc
 
-StrPaths = Union[List[Union[Path,str]], str]
+StrPaths = Union[List[Union[Path, str]], str]
 
 
 def _make_spec_set(req):
     if isinstance(req.specifier, SpecifierSet):
         return req.specifier
     else:
-        return SpecifierSet(specifiers=','.join((''.join(s) for s in req.specs)))
+        return SpecifierSet(specifiers=",".join(("".join(s) for s in req.specs)))
 
 
 def _get_all_versions(req):
@@ -42,21 +42,21 @@ def _get_oldest_version(req):
         # for some reason 'av' is incompatible 'Version" object that spec_set wants to parse again
         if spec_set.contains(str(av)):
             return av
-    raise RuntimeError(f'no matching version for {req.project_name}')
+    raise RuntimeError(f"no matching version for {req.project_name}")
 
 
 def _get_minimal_restricted_version(req):
     if len(req.specs) == 0:
         # return unconstrained
-        return f'{req.name}\n'
+        return f"{req.name}\n"
     available_versions, spec_set = _get_all_versions(req)
     for av in sorted(available_versions, reverse=False):
         # for some reason 'av' is incompatible 'Version" object that spec_set wants to parse again
         if spec_set.contains(str(av)):
-            if getattr(req, 'marker', None):
-                return f'{req.name}=={av};{req.marker}\n'
-            return f'{req.name}=={av}\n'
-    raise RuntimeError(f'no matching version for {req.project_name}')
+            if getattr(req, "marker", None):
+                return f"{req.name}=={av};{req.marker}\n"
+            return f"{req.name}=={av}\n"
+    raise RuntimeError(f"no matching version for {req.project_name}")
 
 
 def _get_minimal_version(req):
@@ -65,7 +65,7 @@ def _get_minimal_version(req):
         # for some reason 'av' is incompatible 'Version" object that spec_set wants to parse again
         if spec_set.contains(str(av)):
             return av
-    raise RuntimeError(f'no matching version for {req.project_name}')
+    raise RuntimeError(f"no matching version for {req.project_name}")
 
 
 def _get_last_major_versions(req, skip_n_releases=1):
@@ -84,14 +84,14 @@ def _get_last_major_versions(req, skip_n_releases=1):
             last_release = av.release
             if skipped >= skip_n_releases:
                 return av
-        print(f'last release {last_release}')
+        print(f"last release {last_release}")
     # getting skipped version failed, return fallback
     available_versions, spec_set = _get_all_versions(req)
     for av in sorted(available_versions, reverse=True):
         # for some reason 'av' is incompatible 'Version" object that spec_set wants to parse again
         if spec_set.contains(str(av)):
             return av
-    raise RuntimeError(f'no matching version for {req.name}')
+    raise RuntimeError(f"no matching version for {req.name}")
 
 
 def _get_compliant_versions(req):
@@ -101,7 +101,7 @@ def _get_compliant_versions(req):
         # for some reason 'av' is incompatible 'Version" object that spec_set wants to parse again
         if spec_set.contains(str(av)):
             compliant.append(av)
-    raise RuntimeError(f'no matching version for {req.project_name}')
+    raise RuntimeError(f"no matching version for {req.project_name}")
 
 
 def _get_from_req_file(req_files: StrPaths, filter_func):
@@ -110,13 +110,16 @@ def _get_from_req_file(req_files: StrPaths, filter_func):
         req_files = [req_files]
     parsed = []
     with misc.cd_common_base_dir(req_files):
-        for line in itertools.chain(*(open(r, 'rt').readlines() for r in req_files)):
+        for line in itertools.chain(*(open(r, "rt").readlines() for r in req_files)):
             try:
                 gen = list(parse_requirements(line))
-            except (RequirementParseError, pkg_resources.extern.packaging.requirements.InvalidRequirement):
+            except (
+                RequirementParseError,
+                pkg_resources.extern.packaging.requirements.InvalidRequirement,
+            ):
                 gen = list(parser.parse(line))
             for req in gen:
-                if req.name is None and hasattr(req, 'uri'):
+                if req.name is None and hasattr(req, "uri"):
                     # explicit uri dependency cannot install a different version anyway
                     continue
                 parsed.append(req)
@@ -134,6 +137,7 @@ def get_compliant_from_req_file(req_files: StrPaths):
 
 def get_last_majors_from_req_file(req_files: StrPaths, skip_n_releases=1):
     from functools import partial
+
     filter_func = partial(_get_last_major_versions, skip_n_releases=skip_n_releases)
     return _get_from_req_file(req_files, filter_func)
 
@@ -166,18 +170,21 @@ def get_minimal_restricted_from_req_file(req_files: StrPaths, skip_n_releases=1)
     verbatim = []
     imported = []
     with misc.cd_common_base_dir(req_files):
-        for line in itertools.chain(*(open(r, 'rt').readlines() for r in req_files)):
+        for line in itertools.chain(*(open(r, "rt").readlines() for r in req_files)):
             # include relative imports
-            tokens = line.strip().split(' ')
-            if len(tokens) >= 2  and tokens[0].strip() == '-r':
+            tokens = line.strip().split(" ")
+            if len(tokens) >= 2 and tokens[0].strip() == "-r":
                 imported.extend(get_minimal_restricted_from_req_file(tokens[1]))
                 continue
             try:
                 gen = list(parse_requirements(line))
-            except (RequirementParseError, pkg_resources.extern.packaging.requirements.InvalidRequirement) as ex:
+            except (
+                RequirementParseError,
+                pkg_resources.extern.packaging.requirements.InvalidRequirement,
+            ) as ex:
                 gen = list(parser.parse(line))
             for req in gen:
-                if req.name is None and hasattr(req, 'uri'):
+                if req.name is None and hasattr(req, "uri"):
                     # explicit uri dependency cannot install a different version anyway
                     verbatim.append(line)
                     continue
@@ -185,12 +192,9 @@ def get_minimal_restricted_from_req_file(req_files: StrPaths, skip_n_releases=1)
     parsed = _merge_duplicates(parsed)
     for req in parsed:
         yield _get_minimal_restricted_version(req)
-    yield '# verbatim copies of original lines\n'
+    yield "# verbatim copies of original lines\n"
     for line in verbatim:
         yield line
-    yield '# imported requirements\n'
+    yield "# imported requirements\n"
     for line in imported:
         yield line
-
-
-

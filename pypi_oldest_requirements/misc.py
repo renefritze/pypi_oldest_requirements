@@ -12,7 +12,7 @@ def cd(path):
     try:
         yield
     except:
-        print(f'Exception caught {path}: ', sys.exc_info()[0])
+        print(f"Exception caught {path}: ", sys.exc_info()[0])
         traceback.print_exc()
     finally:
         os.chdir(cwd)
