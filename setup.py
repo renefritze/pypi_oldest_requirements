@@ -5,7 +5,7 @@
 
 from setuptools import setup, find_packages
 
-requirements = ['packaging', 'requirements-parser', 'requests', 'requests-toolbelt']
+requirements = ['packaging', 'requirements-parser', 'requests', 'requests-toolbelt', 'typer', 'click<8']
 
 setup_requirements = ['pytest-runner', ]
 

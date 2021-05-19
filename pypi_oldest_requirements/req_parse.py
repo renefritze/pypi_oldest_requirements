@@ -1,13 +1,19 @@
 import functools
+import itertools
 import operator
 import os
 from collections import defaultdict
+from pathlib import Path
+from typing import List, Union
+
 from pkg_resources import parse_requirements, RequirementParseError
 from requirements import parser
 from packaging.specifiers import SpecifierSet, Version
 
 from pypi_oldest_requirements import pypi
 from pypi_oldest_requirements import misc
+
+StrPaths = Union[List[Union[Path,str]], str]
 
 
 def _make_spec_set(req):
@@ -97,11 +103,13 @@ def _get_compliant_versions(req):
     raise RuntimeError(f'no matching version for {req.project_name}')
 
 
-def _get_from_req_file(req_file, filter_func):
+def _get_from_req_file(req_files: StrPaths, filter_func):
     # requirements files can contain relative imports
+    if isinstance(req_files, (str, Path)):
+        req_files = [req_files]
     parsed = []
-    with misc.cd(os.path.dirname(os.path.abspath(req_file))):
-        for line in open(req_file, 'rt').readlines():
+    with misc.cd_common_base_dir(req_files):
+        for line in itertools.chain(*(open(r, 'rt').readlines() for r in req_files)):
             try:
                 gen = list(parse_requirements(line))
             except :
@@ -115,18 +123,18 @@ def _get_from_req_file(req_file, filter_func):
         yield req.name, filter_func(req)
 
 
-def get_oldest_from_req_file(req_file):
-    return _get_from_req_file(req_file, _get_oldest_version)
+def get_oldest_from_req_file(req_files: StrPaths):
+    return _get_from_req_file(req_files, _get_oldest_version)
 
 
-def get_compliant_from_req_file(req_file):
-    return _get_from_req_file(req_file, _get_compliant_versions)
+def get_compliant_from_req_file(req_files: StrPaths):
+    return _get_from_req_file(req_files, _get_compliant_versions)
 
 
-def get_last_majors_from_req_file(req_file, skip_n_releases=1):
+def get_last_majors_from_req_file(req_files: StrPaths, skip_n_releases=1):
     from functools import partial
     filter_func = partial(_get_last_major_versions, skip_n_releases=skip_n_releases)
-    return _get_from_req_file(req_file, filter_func)
+    return _get_from_req_file(req_files, filter_func)
 
 
 def _marker_ok(req):
@@ -150,12 +158,14 @@ def _merge_duplicates(parsed):
     return merged
 
 
-def get_minimal_restricted_from_req_file(req_file, skip_n_releases=1):
+def get_minimal_restricted_from_req_file(req_files: StrPaths, skip_n_releases=1):
+    if isinstance(req_files, (str, Path)):
+        req_files = [req_files]
     parsed = defaultdict(list)
     verbatim = []
     imported = []
-    with misc.cd(os.path.dirname(os.path.abspath(req_file))):
-        for line in open(req_file, 'rt').readlines():
+    with misc.cd_common_base_dir(req_files):
+        for line in itertools.chain(*(open(r, 'rt').readlines() for r in req_files)):
             # include relative imports
             tokens = line.strip().split(' ')
             if len(tokens) >= 2  and tokens[0].strip() == '-r':
