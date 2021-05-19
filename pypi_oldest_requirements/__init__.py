@@ -4,4 +4,4 @@
 
 __author__ = """René Fritze"""
 __email__ = 'rene.fritze@wwu.de'
-__version__ = '2019.0'
+__version__ = '2020.4.2'
