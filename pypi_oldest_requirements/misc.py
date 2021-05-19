@@ -1,6 +1,7 @@
 import contextlib
 import os
 import sys
+import traceback
 from pathlib import Path
 
 
@@ -11,7 +12,8 @@ def cd(path):
     try:
         yield
     except:
-        print('Exception caught: ', sys.exc_info()[0])
+        print(f'Exception caught {path}: ', sys.exc_info()[0])
+        traceback.print_exc()
     finally:
         os.chdir(cwd)
 

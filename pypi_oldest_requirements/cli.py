@@ -32,14 +32,14 @@ def _main(requirements_file):
 
 def transform(filenames: List[str], output_fn:str=None):
     output_fn = output_fn or filenames[0] + '.minimal'
+    filenames = [Path(fn).resolve() for fn in filenames]
+    assert all((fn.exists() for fn in filenames))
     from pypi_oldest_requirements import req_parse, req_write
     minimal = list(req_parse.get_minimal_restricted_from_req_file(filenames))
     req_write.write_requirements(output_fn, minimal)
 
 
 def run():
-    typer.run(main)
+    typer.run(transform)
 
-if __name__ == "__main__":
-    main(sys.argv[1:])
 
