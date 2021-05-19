@@ -2,7 +2,7 @@ Qt.py
 Sphinx==1.4
 cython==0.27
 diskcache
-numpy==1.12.1
+numpy==1.15.4
 packaging
 pytest-runner==2.9
 scipy==0.19.0
