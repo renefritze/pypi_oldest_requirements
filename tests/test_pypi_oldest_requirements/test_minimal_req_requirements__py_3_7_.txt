@@ -1,0 +1,15 @@
+deal
+cython==0.28
+diskcache
+docopt-ng
+icontract
+numpy==1.15.4
+packaging
+pytest-runner==2.9
+qtpy
+scipy==1.1.0
+setuptools==40.8.0
+typer
+wheel
+# verbatim copies of original lines
+# imported requirements
