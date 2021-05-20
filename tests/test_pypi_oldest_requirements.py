@@ -8,23 +8,37 @@ import pytest
 from pypi_oldest_requirements import req_parse
 from pypi_oldest_requirements.cli import transform
 
+REQUIREMENT_FILES = [
+    ["small.txt"],
+    ["small-optional.txt"],
+    ["small.txt", "small-optional.txt"],
+    ["requirements-ci.txt"],
+    ["requirements-optional.txt"],
+    ["requirements-docker-other.txt"],
+    ["requirements.txt"],
+    [
+        "requirements-ci.txt",
+        "requirements-optional.txt",
+        "requirements-docker-other.txt",
+        "requirements.txt",
+    ],
+]
+
 
 @pytest.fixture(
-    params=[
-        ["small.txt"],
-        ["small-optional.txt"],
-        ["small.txt", "small-optional.txt"],
-        ["requirements-ci.txt"],
-        ["requirements-optional.txt"],
-        ["requirements-docker-other.txt"],
-        ["requirements.txt"],
-        [
-            "requirements-ci.txt",
-            "requirements-optional.txt",
-            "requirements-docker-other.txt",
-            "requirements.txt",
-        ],
-    ]
+    params=REQUIREMENT_FILES,
+    ids=[
+        "__".join(
+            (
+                f.replace(
+                    ".txt",
+                    "",
+                )
+                for f in fns
+            )
+        )
+        for fns in REQUIREMENT_FILES
+    ],
 )
 def requirement_files(request, shared_datadir):
     fn = [shared_datadir / p for p in request.param]
