@@ -11,9 +11,9 @@ from pypi_oldest_requirements.cli import transform
 
 @pytest.fixture(
     params=[
-        ["requirements.txt"],
-        ["requirements-optional.txt"],
-        ["requirements.txt", "requirements-optional.txt"],
+        ["small.txt"],
+        ["small-optional.txt"],
+        ["small.txt", "small-optional.txt"],
     ]
 )
 def requirement_files(request, shared_datadir):
