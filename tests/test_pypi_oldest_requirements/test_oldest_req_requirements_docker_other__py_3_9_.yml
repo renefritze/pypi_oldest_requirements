@@ -1,0 +1,34 @@
+!!set
+? - MonkeyType
+  - 17.12.0
+: null
+? - cmake
+  - 0.1.0
+: null
+? - cmarkgfm
+  - 0.1.0
+: null
+? - mypy
+  - '0.1'
+: null
+? - numba
+  - '0.1'
+: null
+? - pyannotate
+  - 1.0.0
+: null
+? - pybind11_stubgen
+  - 0.0.1
+: null
+? - pytest-pycharm
+  - 0.1.0
+: null
+? - scikit-build
+  - 0.1.0
+: null
+? - sphinx
+  - 3.4.0
+: null
+? - sphinxcontrib-bibtex
+  - 0.2.1
+: null
