@@ -14,6 +14,16 @@ from pypi_oldest_requirements.cli import transform
         ["small.txt"],
         ["small-optional.txt"],
         ["small.txt", "small-optional.txt"],
+        ["requirements-ci.txt"],
+        ["requirements-optional.txt"],
+        ["requirements-docker-other.txt"],
+        ["requirements.txt"],
+        [
+            "requirements-ci.txt",
+            "requirements-optional.txt",
+            "requirements-docker-other.txt",
+            "requirements.txt",
+        ],
     ]
 )
 def requirement_files(request, shared_datadir):
