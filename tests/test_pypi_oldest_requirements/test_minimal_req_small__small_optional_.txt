@@ -1,3 +1,13 @@
+Qt.py
+Sphinx==1.4
+cython==0.27
+diskcache
+numpy==1.15.4
+packaging
+pytest-runner==2.9
+scipy==0.19.0
+setuptools==40.8.0
+wheel
 PyQt5
 docker
 envparse
@@ -17,5 +27,18 @@ slycot==0.3.3
 https://pymor.github.io/wheels/pymess-1.0.0-cp36-cp36m-manylinux1_x86_64.whl ; python_version == "3.6" and "linux" in sys_platform
 https://pymor.github.io/wheels/pymess-1.0.0-cp37-cp37m-manylinux1_x86_64.whl ; python_version == "3.7" and "linux" in sys_platform
 # imported requirements
+deal
+cython==0.28
+diskcache
+docopt-ng
+icontract
+numpy==1.17.5
+packaging
+pytest-runner==2.9
+qtpy
+scipy==1.3.3
+setuptools==40.8.0
+typer
+wheel
 # verbatim copies of original lines
 # imported requirements

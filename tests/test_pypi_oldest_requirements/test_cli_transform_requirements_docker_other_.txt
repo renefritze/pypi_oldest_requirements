@@ -1,0 +1,13 @@
+cmake
+cmarkgfm
+pytest-pycharm
+mypy
+numba
+pyannotate
+MonkeyType
+scikit-build
+sphinxcontrib-bibtex
+sphinx==3.4.0
+pybind11_stubgen
+# verbatim copies of original lines
+# imported requirements
