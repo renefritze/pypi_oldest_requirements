@@ -152,7 +152,11 @@ def _merge_duplicates(parsed):
         if len(req_list) == 1:
             merged.append(req_list[0])
             continue
-        reqs = [r for r in req_list if r.marker.evaluate()]
+        reqs = []
+        for r in req_list:
+            if r.marker and not r.marker.evaluate():
+                continue
+            reqs.append(r)
         spec_sets = [r.specifier for r in reqs]
         r0 = reqs[0]
         # the compoung requirement results from only  True markers
