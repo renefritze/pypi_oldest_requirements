@@ -3,7 +3,7 @@ cython==0.28
 diskcache
 docopt-ng
 icontract
-numpy==1.15.4
+numpy==1.22.0
 packaging
 pytest-runner==2.9
 qtpy

@@ -41,7 +41,7 @@ matplotlib
 meshio==4.2.0
 mpi4py==3.0.0
 nbresuse
-numpy==1.17.5
+numpy==1.22.0
 packaging
 pillow
 pyevtk==1.1.0
@@ -82,7 +82,7 @@ cython==0.28
 diskcache
 docopt-ng
 icontract
-numpy==1.17.5
+numpy==1.22.0
 packaging
 pytest-runner==2.9
 qtpy
@@ -97,7 +97,7 @@ cython==0.28
 diskcache
 docopt-ng
 icontract
-numpy==1.17.5
+numpy==1.22.0
 packaging
 pytest-runner==2.9
 qtpy
@@ -139,7 +139,7 @@ cython==0.28
 diskcache
 docopt-ng
 icontract
-numpy==1.17.5
+numpy==1.22.0
 packaging
 pytest-runner==2.9
 qtpy
