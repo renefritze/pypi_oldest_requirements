@@ -48,9 +48,9 @@ source_suffix = ".rst"
 master_doc = "index"
 
 # General information about the project.
-project = u"PyPi Oldest Requirements"
-copyright = u"2019, René Fritze"
-author = u"René Fritze"
+project = "PyPi Oldest Requirements"
+copyright = "2019, René Fritze"
+author = "René Fritze"
 
 # The version info for the project you're documenting, acts as replacement
 # for |version| and |release|, also used in various other places throughout
@@ -129,8 +129,8 @@ latex_documents = [
     (
         master_doc,
         "pypi_oldest_requirements.tex",
-        u"PyPi Oldest Requirements Documentation",
-        u"René Fritze",
+        "PyPi Oldest Requirements Documentation",
+        "René Fritze",
         "manual",
     ),
 ]
@@ -144,7 +144,7 @@ man_pages = [
     (
         master_doc,
         "pypi_oldest_requirements",
-        u"PyPi Oldest Requirements Documentation",
+        "PyPi Oldest Requirements Documentation",
         [author],
         1,
     )
@@ -160,7 +160,7 @@ texinfo_documents = [
     (
         master_doc,
         "pypi_oldest_requirements",
-        u"PyPi Oldest Requirements Documentation",
+        "PyPi Oldest Requirements Documentation",
         author,
         "pypi_oldest_requirements",
         "One line description of project.",
