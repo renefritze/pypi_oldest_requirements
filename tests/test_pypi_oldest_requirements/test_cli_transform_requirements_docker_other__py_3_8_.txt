@@ -1,13 +1,22 @@
 cmake
 cmarkgfm
-pytest-pycharm
-mypy
-numba
-pyannotate
+jupytext
+pyvista
+itkwidgets
 MonkeyType
+mypy
+pyicontract-lint
+pytest-pycharm
+pytimings
+rich
 scikit-build
+sphinx==4.0.0
+sphinx-autodoc-typehints
 sphinxcontrib-bibtex
-sphinx==3.4.0
-pybind11_stubgen
+sphinx-icontract
+virtualenv
+wheel==0.37.0
+Cython==0.29.28
+setuptools_scm==3.3.1
 # verbatim copies of original lines
 # imported requirements
