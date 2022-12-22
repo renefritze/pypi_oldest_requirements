@@ -1,2 +1,0 @@
-# verbatim copies of original lines
-# imported requirements
