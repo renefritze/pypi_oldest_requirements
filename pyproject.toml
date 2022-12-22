@@ -21,7 +21,6 @@ dependencies = [
     "requests",
     "requests-toolbelt",
     "typer",
-    "click<8",
 ]
 dynamic = ["version", "readme"]
 license= {file = "LICENSE"}
