@@ -1,14 +1,11 @@
-deal
-cython==0.29.12
+click
 diskcache
-docopt-ng
-icontract
 numpy==1.19.4
 packaging
 pytest-runner==2.9
-qtpy
+qtpy==2.0.1
 scipy==1.5.4
-setuptools==49.1.0
+setuptools
 typer
 wheel
 # verbatim copies of original lines
