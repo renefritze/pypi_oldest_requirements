@@ -101,3 +101,6 @@ ENV/
 # mypy
 .mypy_cache/
 .idea
+
+# setuptools_scm
+pypi_oldest_requirements/_version.py

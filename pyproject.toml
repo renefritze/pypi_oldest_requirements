@@ -1,3 +1,49 @@
 [build-system]
-requires = ['setuptools>=40.8.0', 'wheel', 'pytest-runner>=2.9', 'packaging', 'requests', 'typer']
+requires = ['setuptools>=62',  "setuptools-scm[toml]", 'wheel', 'pytest-runner>=2.9', ]
 build-backend = "setuptools.build_meta"
+
+[project]
+authors=[{ name = "René Fritze", email = "rene.fritze@wwu.de" }]
+
+classifiers=[
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: BSD License",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+]
+description='Get "oldest" fitting requirements from pypi'
+dependencies = [
+    "packaging",
+    "requirements-parser",
+    "requests",
+    "requests-toolbelt",
+    "typer",
+]
+dynamic = ["version", "readme"]
+license= {file = "LICENSE"}
+keywords= ["pypi", "requirements", "oldest", "tool"]
+name="pypi_oldest_requirements"
+
+urls={ homepage = "https://github.com/renefritze/pypi_oldest_requirements" }
+
+
+requires-python=">=3.8"
+
+[project.scripts]
+pypi_minimal_requirements_pinned="pypi_oldest_requirements.cli:run"
+
+[project.optional-dependencies]
+dev = ["pytest", "pytest-cov", "twine", "watchdog", "flake8", "coverage", "Sphinx", "pytest-pycharm",
+    "pytest-regressions", "pre-commit", "black", ]
+
+[tool.setuptools.dynamic]
+version = { attr = "setuptools_scm.get_version" }
+readme = {file = ["README.md", ]}
+[tool.setuptools_scm]
+write_to = "pypi_oldest_requirements/_version.py"
+
+[tool.setuptools]
+packages=["pypi_oldest_requirements"]
