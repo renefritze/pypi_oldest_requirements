@@ -74,7 +74,7 @@ scikit-build
 sphinx-autodoc-typehints
 sphinx-icontract
 virtualenv
-wheel==0.37.0
+wheel==0.38.1
 Cython==0.29.28
 setuptools_scm==3.3.1
 pytest-runner==2.9
