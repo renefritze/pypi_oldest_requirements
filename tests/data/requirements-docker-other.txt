@@ -17,6 +17,6 @@ sphinxcontrib-bibtex
 sphinx-icontract
 virtualenv
 # numpy git specific
-wheel==0.37.0
+wheel==0.38.1
 Cython==0.29.28
 setuptools_scm>=3.3.1
