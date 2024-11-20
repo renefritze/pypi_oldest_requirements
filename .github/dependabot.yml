@@ -6,6 +6,12 @@ updates:
     schedule:
       interval: "weekly"
   - package-ecosystem: "pip"
-    directory: "./"
+    directory: "/"
     schedule:
       interval: "weekly"
+  - package-ecosystem: "pip"
+    directory: "/tests"
+    schedule:
+      interval: "monthly"
+    allow:
+      - dependency-name: "THIS_PREVENTS_MY_TEST_DATA_FROM_GETTING_BUMPED"
