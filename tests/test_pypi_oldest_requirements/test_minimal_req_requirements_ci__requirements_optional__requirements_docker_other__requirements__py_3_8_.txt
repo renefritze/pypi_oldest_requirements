@@ -1,6 +1,6 @@
 check-manifest==0.48
 check_reqs==0.2.0
-codecov==2.1.12
+codecov==2.1.13
 docutils==0.18.1
 flake8-docstrings==1.6.0
 flake8-rst-docstrings==0.2.6
@@ -107,7 +107,7 @@ wheel
 # imported requirements
 check-manifest==0.48
 check_reqs==0.2.0
-codecov==2.1.12
+codecov==2.1.13
 docutils==0.18.1
 flake8-docstrings==1.6.0
 flake8-rst-docstrings==0.2.6
