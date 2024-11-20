@@ -1,21 +1,7 @@
 PyQt5
 docker
 envparse
-ipyparallel
-ipython==5.0.0
-matplotlib
-mpi4py
-pillow
-pyamg
-pyevtk==1.1.0
-pygmsh
-pyopengl
-pytest-cov
-pytest==4.4.0
-slycot==0.3.3
 # verbatim copies of original lines
-https://pymor.github.io/wheels/pymess-1.0.0-cp36-cp36m-manylinux1_x86_64.whl ; python_version == "3.6" and "linux" in sys_platform
-https://pymor.github.io/wheels/pymess-1.0.0-cp37-cp37m-manylinux1_x86_64.whl ; python_version == "3.7" and "linux" in sys_platform
 # imported requirements
 click
 diskcache
