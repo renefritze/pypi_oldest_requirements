@@ -1,0 +1,12 @@
+click
+diskcache
+numpy==1.19.4
+packaging
+pytest-runner==2.9
+qtpy==2.0.1
+scipy==1.5.4
+setuptools
+typer
+wheel
+# verbatim copies of original lines
+# imported requirements

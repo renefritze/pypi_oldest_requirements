@@ -1,0 +1,40 @@
+!!set
+? - click
+  - '0.1'
+: null
+? - diskcache
+  - 0.1.0
+: null
+? - numpy
+  - 1.17.5
+: null
+? - numpy
+  - 1.19.4
+: null
+? - packaging
+  - '14.0'
+: null
+? - pytest-runner
+  - '2.9'
+: null
+? - qtpy
+  - 2.0.1
+: null
+? - scipy
+  - 1.3.0
+: null
+? - scipy
+  - 1.3.3
+: null
+? - scipy
+  - 1.5.4
+: null
+? - setuptools
+  - 0.7.2
+: null
+? - typer
+  - 0.0.1
+: null
+? - wheel
+  - '0.1'
+: null

@@ -1,0 +1,27 @@
+Qt.py
+Sphinx==1.4
+cython==0.27
+diskcache
+numpy==1.15.4
+packaging
+pytest-runner==2.9
+scipy==0.19.0
+setuptools==40.8.0
+wheel
+PyQt5
+docker
+envparse
+# verbatim copies of original lines
+# imported requirements
+click
+diskcache
+numpy==1.19.4
+packaging
+pytest-runner==2.9
+qtpy==2.0.1
+scipy==1.5.4
+setuptools
+typer
+wheel
+# verbatim copies of original lines
+# imported requirements

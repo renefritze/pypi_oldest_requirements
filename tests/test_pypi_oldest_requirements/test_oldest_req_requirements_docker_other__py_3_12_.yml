@@ -1,0 +1,61 @@
+!!set
+? - Cython
+  - 0.29.28
+: null
+? - MonkeyType
+  - 17.12.0
+: null
+? - cmake
+  - 0.1.0
+: null
+? - cmarkgfm
+  - 0.1.0
+: null
+? - itkwidgets
+  - 0.1.0
+: null
+? - jupytext
+  - 0.6.1
+: null
+? - mypy
+  - '0.1'
+: null
+? - pyicontract-lint
+  - 1.0.0
+: null
+? - pytest-pycharm
+  - 0.1.0
+: null
+? - pytimings
+  - 0.1.0
+: null
+? - pyvista
+  - 0.20.0
+: null
+? - rich
+  - 0.1.0
+: null
+? - scikit-build
+  - 0.1.0
+: null
+? - setuptools_scm
+  - 3.3.1
+: null
+? - sphinx
+  - 4.0.0
+: null
+? - sphinx-autodoc-typehints
+  - 1.0.0
+: null
+? - sphinx-icontract
+  - 1.0.0
+: null
+? - sphinxcontrib-bibtex
+  - 0.2.1
+: null
+? - virtualenv
+  - '0.8'
+: null
+? - wheel
+  - 0.37.0
+: null

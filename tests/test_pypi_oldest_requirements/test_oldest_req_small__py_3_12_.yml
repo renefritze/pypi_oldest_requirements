@@ -1,0 +1,31 @@
+!!set
+? - Qt.py
+  - 0.2.1
+: null
+? - Sphinx
+  - '1.4'
+: null
+? - cython
+  - '0.27'
+: null
+? - diskcache
+  - 0.1.0
+: null
+? - numpy
+  - 1.15.4
+: null
+? - packaging
+  - '14.0'
+: null
+? - pytest-runner
+  - '2.9'
+: null
+? - scipy
+  - 0.19.0
+: null
+? - setuptools
+  - 40.8.0
+: null
+? - wheel
+  - '0.1'
+: null
