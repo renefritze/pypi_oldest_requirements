@@ -1,7 +1,6 @@
 import functools
 import itertools
 import operator
-import os
 from collections import defaultdict
 from pathlib import Path
 from typing import List, Union
@@ -9,7 +8,7 @@ from typing import List, Union
 import pkg_resources
 from pkg_resources import parse_requirements, RequirementParseError
 from requirements import parser
-from packaging.specifiers import SpecifierSet, Version
+from packaging.specifiers import SpecifierSet
 
 from pypi_oldest_requirements import pypi
 from pypi_oldest_requirements import misc
@@ -185,7 +184,7 @@ def get_minimal_restricted_from_req_file(req_files: StrPaths, skip_n_releases=1)
             except (
                 RequirementParseError,
                 pkg_resources.extern.packaging.requirements.InvalidRequirement,
-            ) as ex:
+            ):
                 gen = list(parser.parse(line))
             for req in gen:
                 if req.name is None and hasattr(req, "uri"):

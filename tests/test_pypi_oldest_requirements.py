@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """Tests for `pypi_oldest_requirements` package."""
+
 import re
 import sys
 import pytest

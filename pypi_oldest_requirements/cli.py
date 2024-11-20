@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """Console script for pypi_oldest_requirements."""
+
 import sys
 from pathlib import Path
 from typing import List
