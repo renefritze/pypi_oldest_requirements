@@ -20,10 +20,9 @@
 #
 import os
 import sys
+from importlib.metadata import version
 
 sys.path.insert(0, os.path.abspath(".."))
-
-import pypi_oldest_requirements
 
 # -- General configuration ---------------------------------------------
 
@@ -57,7 +56,7 @@ author = "René Fritze"
 # the built documents.
 #
 # The short X.Y version.
-from importlib.metadata import version
+
 
 version = release = version("pypi_oldest_requirements")
 
