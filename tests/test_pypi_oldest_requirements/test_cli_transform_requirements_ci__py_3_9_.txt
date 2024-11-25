@@ -24,7 +24,7 @@ twine==3.8.0
 # imported requirements
 click
 diskcache
-numpy==1.19.4
+numpy==1.22.0
 packaging
 pytest-runner==2.9
 qtpy==2.0.1
