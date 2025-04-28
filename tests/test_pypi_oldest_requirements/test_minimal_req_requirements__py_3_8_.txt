@@ -1,6 +1,6 @@
 click
 diskcache
-numpy==1.17.5
+numpy==1.22.0
 packaging
 pytest-runner==2.9
 qtpy==2.0.1

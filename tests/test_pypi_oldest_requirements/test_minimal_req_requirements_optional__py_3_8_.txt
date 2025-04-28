@@ -16,7 +16,7 @@ meshio==4.4.0
 mpi4py==3.0.0
 myst-nb==0.16.0
 nbresuse
-numpy==1.17.5
+numpy==1.22.0
 packaging
 pillow
 pyevtk
@@ -42,7 +42,7 @@ xmljson
 # imported requirements
 click
 diskcache
-numpy==1.17.5
+numpy==1.22.0
 packaging
 pytest-runner==2.9
 qtpy==2.0.1
@@ -78,7 +78,7 @@ twine==3.8.0
 # imported requirements
 click
 diskcache
-numpy==1.17.5
+numpy==1.22.0
 packaging
 pytest-runner==2.9
 qtpy==2.0.1
