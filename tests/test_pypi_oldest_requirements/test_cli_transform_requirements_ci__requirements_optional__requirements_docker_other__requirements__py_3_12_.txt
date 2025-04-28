@@ -56,7 +56,7 @@ sphinx-qt-documentation
 sphinx==5.0.0
 sphinxcontrib-bibtex
 sympy
-torch==1.11.0
+torch==2.7.0
 typer
 xmljson
 cmake
