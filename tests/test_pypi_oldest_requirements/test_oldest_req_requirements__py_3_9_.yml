@@ -30,7 +30,7 @@
   - 1.5.4
 : null
 ? - setuptools
-  - 0.7.2
+  - 0.6b1
 : null
 ? - typer
   - 0.0.1
